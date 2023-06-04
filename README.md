@@ -39,7 +39,7 @@ python kaikki-json-to-mongo-loader.py
 
 ```
 
-Now you can run app.py. This will make Lexopedia available on localhost for use.
+Now you can run "app.py". This will make Lexopedia available on localhost for use.
 
 ```
 
