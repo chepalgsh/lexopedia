@@ -1,0 +1,115 @@
+.lexopedia-header-search-bar{
+  padding: 16px; 
+}
+.lexopedia-header-search-bar-button-container {
+  width: 320px;
+  position: absolute; 
+}
+.lexopedia-header-search-bar-button {
+  display: none;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: small;
+  color: #ffffff;
+  background-color: #121212;
+  border: 3.5px solid rgb(44, 44, 44);
+  box-sizing: border-box;
+  margin-top: -3.5px;
+  cursor: pointer;
+  padding: 8px;
+  background-image: url(/static/lexopedia-search-bar-button-icon.png); 
+  background-position: right 8px center; 
+  background-repeat: no-repeat;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, .48);
+}
+.lexopedia-header-search-bar-input[type="text"] {
+  width: 320px;
+  outline: none;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: small;
+  color: #ffffff;
+  background-color: #121212;
+  border: 3.5px solid rgb(44, 44, 44);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px;
+  border-radius: 5px;
+  background-image: url(/static/lexopedia-search-bar-input-icon.png);
+  background-position: right 8px center;
+  background-repeat: no-repeat;
+}
+
+.lexopedia-header {
+  width: 100%;
+  top: 0;
+  position: fixed; 
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000;
+  z-index: 9999;
+}
+
+.lexopedia-header img{
+  display: block;
+}
+
+.lexopedia-header a:nth-child(1) {
+  height: 40px;
+}
+
+.lexopedia-header a:nth-child(2) {
+  height: 32px;
+}
+
+.lexopedia-header a:nth-child(1) {
+  align-self: center; 
+  padding-left: 32px; 
+  padding-top: 8px; 
+  padding-bottom: 8px; 
+  padding-right: 8px;
+  display: none;
+}
+
+.lexopedia-header a:nth-child(2) {
+  align-self: center; 
+  padding-left: 16px; 
+  padding-top: 8px; 
+  padding-bottom: 8px; 
+  padding-right: 8px;
+  display: flex;
+}
+
+@media only screen and (max-width: 548px) {
+
+  .lexopedia-header a:nth-child(1) {
+    display: flex;
+  }
+  
+  .lexopedia-header a:nth-child(2) {
+    display: none;
+  }
+  
+
+  .lexopedia-header-search-bar{
+    padding-left: 0px;
+    padding-right: 32px;
+    width: 100%;
+  }
+
+
+  .lexopedia-header-search-bar-input[type="text"] {
+    width: 100%;
+  }
+
+  .lexopedia-header-search-bar-button-container{
+    width: calc(100% - 112px);
+  }
+  
+  .mdc-top-app-bar__row {
+    order: 2;
+  }
+} 
+
+.lexopedia-header-search-bar-button:nth-child(2) {
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 5px;
+}

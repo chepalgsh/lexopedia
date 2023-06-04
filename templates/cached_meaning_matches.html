@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#001736">
+    <meta name="msapplication-navbutton-color" content="#001736">
+    <meta name="apple-mobile-web-app-status-bar-style" content="purple">
+    <meta name="description" content="Words in other languages with the same meaning as {{gloss}}:">
+    <meta name="keywords" content="words, meaning, translation, languages, find words, find meaning, find translation, lexopedia">
+    <meta name="author" content="cheplagsh">
+    <title>Lexopedia: {{gloss}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='readable.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="{{ url_for('static', filename='lexopedia_header.css') }}" rel="stylesheet">
+    <script defer src="{{ url_for('static', filename='lexopedia_header.js')}}"></script>
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lexopedia-icon.svg')}}" rel="icon" type="image/svg+xml">
+    <link href="/favicon.ico" rel="alternate icon" type="image/x-icon">
+</head>
+<body>
+    <div class="lexopedia-header">
+      <a href="/">
+          <img src="{{ url_for('static', filename='lexopedia-icon.png') }}" alt="LexopediaLogo" >
+        </a>
+      <a href="/">
+        <img src="{{ url_for('static', filename='lexopedia-logo.png') }}" alt="LexopediaLogo" >
+      </a>
+      <div class="lexopedia-header-search-bar">
+        <input class="lexopedia-header-search-bar-input" type="text" id="lexopedia-header-search-bar-input" placeholder="Search on Lexopedia..." minlength="2" maxlength="14" autocomplete="off">
+        <div class="lexopedia-header-search-bar-button-container">
+          <div class="lexopedia-header-search-bar-button">
+            <p style="margin-top: 2;">Search "searchTerm" for meaning matches...</p>
+          </div>
+          <div class="lexopedia-header-search-bar-button">
+            <p style="margin-top: 2;">Search "searchTerm" for spelling matches...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="progressbar">
+        <div></div>
+    </div>
+    <main style="margin-top: 16px;">
+      <h2>Words in other languages with the same meaning as <i> <span style="color: #800000">{{ gloss }}</span> </i></h2>
+      {% if meaning_matches %}
+        <p style="color: hsla(0, 0%, 100%, 50%)">Number of languages represented: <span style="color: #800000">{{ languages }}</span></p>
+        <p style="color: hsla(0, 0%, 100%, 50%)">Number of matches found: <span style="color: #800000">{{ words }}</span></p>        
+      {% endif %}
+      {% if meaning_matches %}
+          <ul>
+            {% for match in meaning_matches %}
+                <li>({{ match[1] }}) <a href="https://en.wiktionary.org/wiki/{{ match[0] }}#{{ match[1] }}"
+                  class="lexopedia__link"><i style="font-size: larger;">{{ match[0] }}</i></a> - {{ match[2] }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+    </main>
+    <footer class="lexopedia-footer">
+        <section class="lexopedia-footer--container">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell--span-3"><a href="/">Home</a></div>
+                    <div class="mdc-layout-grid__cell--span-3"><a href="/dictionaries">Dictionaries</a></div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <script defer src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+</body>
+<script>
+  function validateForm() {
+    var gloss = document.forms["myForm"]["gloss"].value;
+    if (gloss.length < 2 || gloss.indexOf(" ") !== -1) {
+      alert("Please enter meainig with at least two characters and without spaces.");
+      return false;
+    }
+    // show progress bar
+    var progressbar = document.querySelector('#progressbar');
+    
+    // Update progress bar as page loads
+    window.addEventListener("load", function() {
+      // When the page is fully loaded, hide the progress bar
+      progressbar.classList.remove('active');
+    });
+    
+    // When the page is loading, update progress bar width
+    window.addEventListener("beforeunload", function() {
+      progressbar.classList.add('active');
+    });
+
+    return true;
+  }
+</script>
+</html>

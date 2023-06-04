@@ -1,0 +1,48 @@
+:root {
+    --lexopedia-header-title-font-size: 3em;
+    --lexopedia-header-description-font-size: 1em
+}
+
+.lexopedia-footer {
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #000000;
+    color: #fff
+}
+
+.features-icon {
+    color: #800000;
+    font-size: 4em
+}
+
+.features-logo {
+    max-width: 4em;
+    max-height: 4em
+}
+
+.features-title,
+.features-description {
+    margin: 0;
+    padding: 0
+}
+
+.features-container {
+    margin: 0;
+    padding: 0
+}
+
+.features-before {
+    vertical-align: middle
+}
+
+
+.mdc-layout-grid__inner {
+    align-content: center
+}
+
+.inside {
+    padding: 56px 10% 0
+}
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#00000">
+    <meta name="msapplication-navbutton-color" content="#00000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="Lexopedia, words, spelling, meainig, spelling translation, languages, find words, find meaning, find translation, lexopedia, language service, unconventional ideas, linguistics, language tools, word data, ancient languages, resource, unorthodox ideas, accuracy, credibility, linguistic knowledge, mainstream academia.">
+    <meta name="author" content="cheplagsh">
+    <meta name="description" content="Welcome to Lexopedia, where we help you uncover the hidden connections between languages, modern and ancient. Our extensive word database provides a glimpse into the past and the origins of human communication. Join us on this exciting linguistic journey and discover the world of language in all its ancient glory.">
+    <meta property="og:title" content="Find lexical similarities between languages, ancient to modern.">
+    <meta property="og:site_name" content="lexopedia">
+    <meta property="og:description" content="Welcome to lexopedia, where we help you uncover the hidden connections between languages, modern and ancient. Our extensive word database provides a glimpse into the past and the origins of human communication. Join us on this exciting linguistic journey and discover the world of language in all its ancient glory.">
+    <meta property="og:image" content="{{ url_for('static', filename='lexopedia-og-banner.png') }}">
+    <meta property="og:url" content="https://lexopedia.ru/">
+    <title>Lexopedia: Lexical Similarities</title>
+    <link rel="canonical" href="https://lexopedia.ru/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="{{ url_for('static', filename='lexopedia_header.css') }}" rel="stylesheet">
+    <script defer src="{{ url_for('static', filename='lexopedia_header.js')}}"></script>
+    <link href="{{ url_for('static', filename='language_grid.css') }}" rel="stylesheet">
+    <script defer src="{{ url_for('static', filename='small_language_grid.js')}}"></script>
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lexopedia-icon.svg')}}" rel="icon" type="image/svg+xml">
+    <link href="/favicon.ico" rel="alternate icon" type="image/x-icon">
+</head>
+<body>
+    <div class="lexopedia-header">
+        <a href="/">
+            <img src="{{ url_for('static', filename='lexopedia-icon.png') }}" alt="LexopediaLogo" >
+          </a>
+        <a href="/">
+          <img src="{{ url_for('static', filename='lexopedia-logo.png') }}" alt="LexopediaLogo" >
+        </a>
+        <div class="lexopedia-header-search-bar">
+          <input class="lexopedia-header-search-bar-input" type="text" id="lexopedia-header-search-bar-input" placeholder="Search on Lexopedia..." minlength="2" maxlength="14" autocomplete="off">
+          <div class="lexopedia-header-search-bar-button-container">
+            <div class="lexopedia-header-search-bar-button">
+              <p style="margin-top: 2;">Search "searchTerm" for meaning matches...</p>
+            </div>
+            <div class="lexopedia-header-search-bar-button">
+              <p style="margin-top: 2;">Search "searchTerm" for spelling matches...</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="progressbar">
+        <div></div>
+    </div>
+    <div class="inside" style="margin-top:  16px;">
+        <h2>What is Lexopedia?</h2>
+        <p style="color: hsla(0, 0%, 100%, 50%);">
+            Lexopedia is a powerful tool for uncovering lexical similarities between different languages. Our founder created Lexopedia as a personal project to find linguistic connections between as many languages as possible. After realizing its potential, he decided to share it with the world. With Lexopedia, you can discover previously unknown lexical similarities between languages, potentially leading to groundbreaking linguistic breakthroughs. Who knows, you might even be the one to make the next big discovery!
+        </p>
+        <p style="color: hsla(0, 0%, 100%, 50%);">
+            Currently, we're focusing on finding similarities between <i><a href="/nakh-and-indo-european"
+            class="lexopedia__link" style="font-size: larger;">Nakh languages and Indo-European languages</a></i> If you find any interesting similarities, please share them with us via Telegram at <i><a href="https://t.me/chepalgsh26" class="lexopedia__link" style="font-size: larger;">@chepalgsh26</a></i> and we'll publish them on our site.
+        </p>
+        <p style="color: hsla(0, 0%, 100%, 50%);">
+            We're a small team and Lexopedia is a non-profit project. As a student, our founder can't maintain the project without your help. If you enjoy using Lexopedia, please consider donating to our cause at <i><a href="https://www.buymeacoffee.com/lexopedia"
+            class="lexopedia__link" style="font-size: larger;">bmc@lexopedia</a></i> All donations will go towards improving the site and expanding our database of lexical similarities. You can view a list of our generous donors <i><a href="/patrons" class="lexopedia__link" style="font-size: larger;">here</a></i>
+        </p>
+        <p style="color: hsla(0, 0%, 100%, 50%);">
+            In addition to our lexical similarity tool, we also offer dictionaries in various languages. Please bear with us as we're currently working on improving our site. Thank you for using Lexopedia!
+        </p>
+        <h2>Dictionaries:</h2>
+        <div id="language-grid-wrapper">
+            <div id="language-grid-loading">
+              <i class="fa fa-spinner fa-spin"></i> Loading...
+            </div>
+            <div id="language-grid"></div>
+          </div>   
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+    </div>
+    <footer class="lexopedia-footer">
+        <section class="lexopedia-footer--container">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell--span-3"><a href="/">Home</a></div>
+                    <div class="mdc-layout-grid__cell--span-3"><a href="/dictionaries">Dictionaries</a></div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    
+</body>
+</html>

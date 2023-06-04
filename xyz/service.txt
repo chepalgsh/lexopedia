@@ -1,0 +1,12 @@
+[Unit]
+Description=Lexopedia Running Service
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/lexopedia/
+ExecStart=/usr/bin/gunicorn app:app --workers 6 --bind 0.0.0.0:8080
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

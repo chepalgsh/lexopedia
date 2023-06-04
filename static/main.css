@@ -1,0 +1,167 @@
+html,
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif, sans-serif;
+    max-width: 100vw;
+    height: 100%
+}
+:root {
+    --mdc-theme-primary: #800000!important;
+    --mdc-theme-secondary: #800000!important;
+    --links-color: #800000;
+    --theme-elevation: #800000;
+    --theme-color: #800000
+}
+a.lexopedia__link {
+    color: #800000;
+    text-decoration: none
+}
+a.lexopedia__link:hover {
+    text-decoration: underline
+}
+h1{
+    color: hsla(0, 0%, 100%, 70%);
+}
+h2{
+    color: hsla(0, 0%, 100%, 70%);
+}
+@media(prefers-color-scheme:dark) {
+    html,
+    body {
+        background-color: #0d0d0d;
+        color: #fff
+    }
+     :root {
+        --mdc-theme-primary: #000000!important;
+        --mdc-theme-secondary: #000000!important;
+        --mdc-theme-surface: #000!important;
+        --mdc-theme-on-surface: #fff!important;
+        --theme-elevation: #001736
+    }
+    .mdc-button .mdc-button__ripple::before,
+    .mdc-button .mdc-button__ripple::after,
+    .mdc-icon-button::before,
+    .mdc-icon-button::after,
+     :not(.mdc-list--non-interactive)>:not(.mdc-list-item--disabled).mdc-list-item::before,
+     :not(.mdc-list--non-interactive)>:not(.mdc-list-item--disabled).mdc-list-item::after {
+        background-color: var(--theme-color, #800000)
+    }
+    .mdc-dialog__surface {
+        box-shadow: none;
+        background-color: var(--theme-elevation)!important
+    }
+    .mdc-dialog__title,
+    .mdc-dialog__content {
+        color: #fff!important
+    }
+    .mdc-dialog__button {
+        color: #800000!important
+    }
+    .mdc-snackbar__surface {
+        background-color: #000000!important
+    }
+    .mdc-linear-progress__buffer {
+        background-color: #000000!important
+    }
+    .mdc-linear-progress__bar-inner {
+        border-color: var(--theme-color, #800000)!important
+    }
+}
+.center--container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px
+}
+.lexopedia-footer--container {
+    padding-top: 32px;
+    padding: 16px
+}
+a.mail-link {
+    text-decoration: underline!important
+}
+.lexopedia-footer--container a {
+    text-decoration: none;
+    color: #fff;
+    transition: .5s ease
+}
+.lexopedia-footer--container a:hover {
+    color: hsla(0, 0%, 75%);
+    transition: .5s ease
+}
+.lexopedia-footer--container .mdc-layout-grid {
+    margin: 0 5%;
+    padding: 0
+}
+#progressbar {
+    position: fixed;
+    width: 100%;
+    height: 5px;
+    margin-top: 56px;
+    background-color: #333;
+    z-index: 9990;
+    display: none;
+}
+#progressbar.active {
+    display: block;
+}
+#progressbar > div {
+    height: 100%;
+    background-color: #afafaf;
+    width: 0%;
+    animation: progress 2s linear infinite;
+}
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+    margin-bottom: 16px;
+}
+.pagination {
+    margin: 6px 0;
+    overflow: hidden;
+    clear: left;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .pagination li.hidden-on-small {
+      display: none;
+    }
+}
+
+.pagination ul li:first-child {
+    margin-left: 0;
+}
+
+.pagination ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0 5px;
+}
+
+.pagination ul li a, .pagination ul li a.no-page:hover {
+    background-color: #333;
+    color: #ccc;
+}
+
+.pagination ul li a {
+    border: 3.5px solid rgb(44, 44, 44);
+    background-color: #121212;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: small;
+    display: inline-block;
+    margin-bottom: 2px;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 5px;
+    
+}

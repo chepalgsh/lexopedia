@@ -1,0 +1,45 @@
+#language-grid {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 2fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.language-block {
+  width: 100%;
+  width: 100%;
+  background-color: #121212;
+  border-radius: 5px;
+  border: 3.5px solid rgb(44, 44, 44);
+  text-align: center;
+  cursor: pointer;
+}
+
+.link-block {
+  width: 100%;
+  height: 128px;
+  background-color: #121212;
+  border-radius: 5px;
+  border: 3.5px solid rgb(44, 44, 44);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#language-grid-wrapper {
+  position: relative;
+}
+#language-grid-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f0f0f;
+  z-index: 1;
+}
