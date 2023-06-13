@@ -10,7 +10,7 @@ Lexopedia is a comprehensive online tool that allows users to search for meaning
 * Easy-to-use search bar for finding meaning or spelling matches
 
 # Why Lexopedia?
-I've created Lexopedia as a personal project to find unknown connections between different languages. But Lexopedia has a great potential to lead to groundbreaking linguistic breakthroughs by uncovering hidden lexical similarities between diverse languages.
+Lexopedia has a great potential to lead to groundbreaking linguistic breakthroughs by uncovering hidden lexical similarities between diverse languages.
 
 # Installation
 * To set up Lexopedia on your local computer, you need to follow these steps:
