@@ -23,6 +23,14 @@ You need the one with all languages combined, it should be available on https://
 
 ```
 
+After that you should use "requirements.txt" to install all requirement packages.
+
+```
+
+ pip install -r requirements.txt
+
+```
+
 Then you should run "kaikki-json-parser.py". This will save words and their meanings in a new JSON file while also removing all non-Latin written words.
 
 ```
