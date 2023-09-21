@@ -14,7 +14,6 @@
     <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='readable.css') }}" rel="stylesheet">
-    <script defer src="{{ url_for('static', filename='lexopedia-link-random-color.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="{{ url_for('static', filename='lexopedia_header.css') }}" rel="stylesheet">
     <script defer src="{{ url_for('static', filename='lexopedia_header.js')}}"></script>
@@ -49,16 +48,24 @@
     <main style="margin-top: 16px;">
       <p style="color: hsla(0, 0%, 100%, 50%)"></p>
         {% if patrons %}
-          <h2>Thank you guys for all the support!</h2>
-          <p>We have no chance to maintain this project without you all:</p>
+          <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">
+            Thank you guys for all the support!
+          </p>
+          <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">
+            We have no chance to maintain this project without you all:
+          </p>
           <ul>
             {% for patron in patrons %}
-              <li><a href="https://www.buymeacoffee.com/{{ patron.name }}">{{ patron.name }}</a></li>
+            <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">
+                <i><a href="https://www.buymeacoffee.com/{{ patron.name }}">class="lexopedia__link" style="font-size: larger;">{{ patron.name }}</a></i> 
+            </p>
             {% endfor %}
           </ul>
         {% else %}
-          <h2>No Supporters Yet</h2>
-          <p>We can't maintain this project without your help guys, please think about donating. </p>
+        <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">
+          Lexopedia is a non-profit project and if you enjoy using it, please consider donating to our cause at <i><a href="https://www.buymeacoffee.com/lexopedia"
+          class="lexopedia__link" style="font-size: larger;">bmc@lexopedia</a></i> 
+        </p>
         {% endif %}
 
       <div>&nbsp;</div>
