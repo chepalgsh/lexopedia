@@ -1,0 +1,24 @@
+2023-09-27 19:00:58:wordhoard.utilities.request_html:INFO: --------------------------------------------------------------------------------
+2023-09-27 19:00:58:wordhoard.utilities.request_html:INFO: The requested URL is protected by Cloudflare's DDoS mitigation service.
+2023-09-27 19:00:58:wordhoard.utilities.request_html:INFO: Requested URL: https://www.collinsdictionary.com/dictionary/english-thesaurus/death
+2023-09-27 19:00:58:wordhoard.utilities.request_html:INFO: --------------------------------------------------------------------------------
+2023-09-27 19:01:01:wordhoard.synonyms:ERROR: An AttributeError occurred in the following code segment:
+2023-09-27 19:01:01:wordhoard.synonyms:ERROR:   File "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\wordhoard\synonyms.py", line 314, in _query_collins_dictionary
+    if fresh_soup.find('span', {'class': 'headerSensePos'}):
+
+2023-09-27 19:01:41:wordhoard.synonyms:ERROR: An AttributeError occurred in the following code segment:
+2023-09-27 19:01:41:wordhoard.synonyms:ERROR:   File "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\wordhoard\synonyms.py", line 564, in _query_thesaurus_com
+    for list_item in word_container.find('ul').find_all('li'):
+
+2023-09-27 19:07:42:wordhoard.utilities.request_html:INFO: --------------------------------------------------------------------------------
+2023-09-27 19:07:42:wordhoard.utilities.request_html:INFO: The requested URL is protected by Cloudflare's DDoS mitigation service.
+2023-09-27 19:07:42:wordhoard.utilities.request_html:INFO: Requested URL: https://www.collinsdictionary.com/dictionary/english-thesaurus/death
+2023-09-27 19:07:42:wordhoard.utilities.request_html:INFO: --------------------------------------------------------------------------------
+2023-09-27 19:07:45:wordhoard.synonyms:ERROR: An AttributeError occurred in the following code segment:
+2023-09-27 19:07:45:wordhoard.synonyms:ERROR:   File "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\wordhoard\synonyms.py", line 314, in _query_collins_dictionary
+    if fresh_soup.find('span', {'class': 'headerSensePos'}):
+
+2023-09-27 19:08:44:wordhoard.synonyms:ERROR: An AttributeError occurred in the following code segment:
+2023-09-27 19:08:44:wordhoard.synonyms:ERROR:   File "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\wordhoard\synonyms.py", line 564, in _query_thesaurus_com
+    for list_item in word_container.find('ul').find_all('li'):
+

@@ -24,7 +24,12 @@ def find_meaning_matches(target_gloss):
                 sim = 1 - distance_score / max_len
                 if sim > 0.3:
                     meaning_matches.append((entry, gloss))
+    
+    # Sort meaning_matches alphabetically
+    meaning_matches.sort(key=lambda x: x[0]["word"].lower())
+    
     return meaning_matches
+
 
 def find_spelling_matches(target_word):
     spelling_matches = []
