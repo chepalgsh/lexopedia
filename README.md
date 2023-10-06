@@ -2,15 +2,11 @@
 
 ![lexopedia ru](https://github.com/chepalgsh/lexopedia/assets/67635401/3d401ba6-aed4-488f-9a72-a66d9d602d6d)
 
-Lexopedia is a comprehensive online tool that allows users to search for meaning or spelling matches between a vast number of languages, including old and new languages. It is based on [wiktionary.org](https://www.wiktionary.org) dumps from [kaikki.org](https://kaikki.org)
+Lexopedia is a comprehensive online tool that allows users to search for meaning or spelling matches between a vast number of languages, including old and new ones. It is based on [wiktionary.org](https://www.wiktionary.org) dumps from [kaikki.org](https://kaikki.org)
 
 # Features
 * User-friendly interface
-* Dictionaries for over a thousand languages, including Latin, Gothic, Proto-Indo-European, Proto-Mongolic, Proto-Italian and Egyptian
-* Easy-to-use search bar for finding meaning or spelling matches
-
-# Why Lexopedia?
-Lexopedia has a great potential to lead to groundbreaking linguistic breakthroughs by uncovering hidden lexical similarities between diverse languages.
+* Giant wordbase
 
 # Installation
 * To set up Lexopedia on your local computer, you need to follow these steps:
@@ -57,9 +53,6 @@ Now you can run "app.py". This will make Lexopedia available on localhost for us
 
 # How to Use
 Lexopedia is super easy to use. Open Lexopedia on your web browser and type in the word you are looking for in the search bar. You can use the search bar to find meaning or spelling matches across more then a thousand languages.
-
-# Conclusion
-Lexopedia is an amazing tool for language lovers and linguistics enthusiasts. With its easy-to-use interface, and wide range of dictionaries for many languages, Lexopedia is a one-stop solution for all the nerds like me searching for hidden conections between unrelated languages.
 
 You can view a list of our generous donors [here](https://lexopedia.ru/patrons)
 
