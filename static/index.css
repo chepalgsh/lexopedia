@@ -42,7 +42,31 @@
     align-content: center
 }
 
+.home-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    gap: 16px;
+  }
+
+.home-page-block{
+    max-width: 679px;
+    display: block;
+    position: relative;
+}
+
+.home-page-image {
+    width: 100%; 
+    user-select: none; 
+    pointer-events: none;
+}
+
+@media only screen and (max-width: 548px) {
+    .home-page-block{
+        max-width: 100%;
+    }
+}
+
 .inside {
-    padding: 56px 10% 0
+    padding: 56px 8% 0
 }
 

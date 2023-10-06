@@ -62,7 +62,7 @@
 
 .lexopedia-header a:nth-child(1) {
   align-self: center; 
-  padding-left: 32px; 
+  padding-left: 16px; 
   padding-top: 8px; 
   padding-bottom: 8px; 
   padding-right: 8px;
@@ -78,7 +78,7 @@
   display: flex;
 }
 
-@media only screen and (max-width: 548px) {
+@media only screen and (max-width: 679px) {
 
   .lexopedia-header a:nth-child(1) {
     display: flex;
@@ -91,7 +91,7 @@
 
   .lexopedia-header-search-bar{
     padding-left: 0px;
-    padding-right: 32px;
+    padding-right: 16px;
     width: 100%;
   }
 
@@ -101,7 +101,7 @@
   }
 
   .lexopedia-header-search-bar-button-container{
-    width: calc(100% - 112px);
+    width: calc(100% - 80px);
   }
   
   .mdc-top-app-bar__row {
