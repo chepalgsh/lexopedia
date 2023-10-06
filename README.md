@@ -62,4 +62,5 @@ Lexopedia is super easy to use. Open Lexopedia on your web browser and type in t
 Lexopedia is an amazing tool for language lovers and linguistics enthusiasts. With its easy-to-use interface, and wide range of dictionaries for many languages, Lexopedia is a one-stop solution for all the nerds like me searching for hidden conections between unrelated languages.
 
 You can view a list of our generous donors [here](https://lexopedia.ru/patrons)
+
 <a href="https://www.buymeacoffee.com/lexopedia"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza!&emoji=🍕&slug=lexopedia&button_colour=800000&font_colour=ffffff&font_family=Comic&outline_colour=ffffff&coffee_colour=FFDD00" /></a>
