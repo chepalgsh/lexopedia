@@ -1,6 +1,5 @@
 html,
 body {
-    overflow: auto;
     margin: 0;
     font-family: 'Noto Sans', Arial, sans-serif;
     max-width: 100vw;

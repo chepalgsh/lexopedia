@@ -42,23 +42,24 @@
         </div>
       </div>
     </div>
-    <div id="progressbar">
+    <div id="progressbar" >
         <div></div>
     </div>
     <main style="margin-top: 16px;">
-      <p style="font-size: 1.66em; color: hsla(0, 0%, 100%, 50%);" >Words in other languages with the same meaning as <i> <span style="color: #800000">{{ gloss }}</span> </i></h2>
+      <div class="home-page-block">
+      <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);" >Words in other languages with the same meaning as <i> <span style="color: #800000">{{ gloss }}</span> </i></h2>
       {% if meaning_matches %}
-      <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">Number of languages represented: <span style="color: #800000">{{ languages }}</span></p>
-      <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">Number of matches found: <span style="color: #800000">{{ words }}</span></p>        
+        <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">Number of languages represented: <span style="color: #800000">{{ languages }}</span></p>
+        <p style="font-size: 1.33em; color: hsla(0, 0%, 100%, 50%);">Number of matches found: <span style="color: #800000">{{ words }}</span></p>        
       {% endif %}
       {% if meaning_matches %}
-          <ul style="font-size: 1.33em;">
+          <ul style="font-size: 1.00em;">
             {% for match in meaning_matches %}
                 <li>({{ match[1] }}) <a href="https://en.wiktionary.org/wiki/{{ match[0] }}#{{ match[1] }}"
                   class="lexopedia__link"><i style="font-size: larger;">{{ match[0] }}</i></a> - {{ match[2] }}</li>
             {% endfor %}
         </ul>
-      {% endif %}
+      {% endif %}</div>
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>&nbsp;</div>

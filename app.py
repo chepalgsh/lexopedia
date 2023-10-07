@@ -141,15 +141,14 @@ def cached_spelling_matches(searchTerm):
     # Check if a file with this name exists
     filename = f"{searchTerm.lower()}-spelling-matches"
     filepath = os.path.join("lexopedia-cache", filename)
-    # Add the gloss to the HTML tag
-    searchTerm = searchTerm.capitalize()
+
     if os.path.exists(filepath):
         # Load the data from the file
         with open(filepath, "rb") as f:
             spelling_matches_data = pickle.load(f)
             languages = set(match[1] for match in spelling_matches_data)
 
-        return render_template("cached_spelling_matches.html", spelling_matches=spelling_matches_data, languages=f"{len(languages)}", words=f"{len(spelling_matches_data)}", word=searchTerm,)
+        return render_template("cached_spelling_matches.html", spelling_matches=spelling_matches_data, languages=f"{len(languages)}", words=f"{len(spelling_matches_data)}", word=searchTerm.lower())
 
     return "No matches found for this word."
 
@@ -183,15 +182,13 @@ def cached_meaning_matches(searchTerm):
     filename = f"{searchTerm.lower()}-meaning-matches"
     filepath = os.path.join("lexopedia-cache", filename)
 
-    # Add the searchTerm to the HTML tag
-    searchTerm = searchTerm.capitalize()
     if os.path.exists(filepath):
         # Load the data from the file
         with open(filepath, "rb") as f:
             meaning_matches_data = pickle.load(f)
             languages = set(match[1] for match in meaning_matches_data)
 
-        return render_template("cached_meaning_matches.html", meaning_matches=meaning_matches_data, languages=f"{len(languages)}", words=f"{len(meaning_matches_data)}", gloss=searchTerm)
+        return render_template("cached_meaning_matches.html", meaning_matches=meaning_matches_data, languages=f"{len(languages)}", words=f"{len(meaning_matches_data)}", gloss=searchTerm.lower())
 
     return "No matches found for this gloss."
 
