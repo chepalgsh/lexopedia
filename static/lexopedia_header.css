@@ -7,9 +7,9 @@
 }
 .lexopedia-header-search-bar-button {
   display: none;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
   font-size: small;
-  color: #ffffff;
+  color: hsla(0, 0%, 100%, 70%);
   background-color: #121212;
   border: 3.5px solid rgb(44, 44, 44);
   box-sizing: border-box;
@@ -24,9 +24,9 @@
 .lexopedia-header-search-bar-input[type="text"] {
   width: 320px;
   outline: none;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
   font-size: small;
-  color: #ffffff;
+  color: hsla(0, 0%, 100%, 70%);
   background-color: #121212;
   border: 3.5px solid rgb(44, 44, 44);
   box-sizing: border-box;
