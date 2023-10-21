@@ -1,6 +1,7 @@
 # [lexopedia.ru](https://lexopedia.ru)
 
-![lexopedia ru](https://github.com/chepalgsh/lexopedia/assets/67635401/3d401ba6-aed4-488f-9a72-a66d9d602d6d)
+![lexopedia-ru](https://github.com/chepalgsh/lexopedia/assets/67635401/97d259ba-e59b-4cd5-9d0f-0b222e7753fc)
+
 
 Lexopedia is a comprehensive online tool that allows users to search for meaning or spelling matches between a vast number of languages, including old and new ones. It is based on [wiktionary.org](https://www.wiktionary.org) dumps from [kaikki.org](https://kaikki.org)
 
