@@ -3,7 +3,7 @@
 ![lexopedia-ru](https://github.com/chepalgsh/lexopedia/assets/67635401/97d259ba-e59b-4cd5-9d0f-0b222e7753fc)
 
 
-Lexopedia is a comprehensive online tool that allows users to search for meaning or spelling matches between a vast number of languages, including old and new ones. It is based on [wiktionary.org](https://www.wiktionary.org) dumps from [kaikki.org](https://kaikki.org)
+Lexopedia is a freely-available linguistic search for meaning or spelling matches across thousands of languages. It is based on [wiktionary.org](https://www.wiktionary.org) dumps from [kaikki.org](https://kaikki.org)
 
 # Features
 * User-friendly interface
