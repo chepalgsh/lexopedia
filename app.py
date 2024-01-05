@@ -13,6 +13,10 @@ client = MongoClient()
 db = client["wordbase"]
 collection = db["entries"]
 
+import os
+import pickle
+import jellyfish
+
 def find_meaning_matches(target_gloss):
     meaning_matches = []
     for entry in collection.find():
@@ -24,10 +28,12 @@ def find_meaning_matches(target_gloss):
                 sim = 1 - distance_score / max_len
                 if sim > 0.3:
                     meaning_matches.append((entry, gloss))
-    
+                    # Log information
+                    print(f"Found match: {target_gloss} in entry: {entry['word']}, gloss: {gloss}")
+
     # Sort meaning_matches alphabetically
     meaning_matches.sort(key=lambda x: x[0]["word"].lower())
-    
+
     return meaning_matches
 
 
@@ -40,10 +46,16 @@ def find_spelling_matches(target_word):
         if len(gloss.split()) > 0 and len(gloss.split()) <= 2 and word.startswith(target_word[0]):
             if target_word.startswith(word) and len(word) > 2:
                 spelling_matches.insert(0, (word, lang, gloss))
+                # Log information
+                print(f"Found spelling match: {target_word} in entry: {word}, gloss: {gloss}")
             elif jellyfish.soundex(target_word) == jellyfish.soundex(word):
                 spelling_matches.append((word, lang, gloss))
+                # Log information
+                print(f"Found soundex match: {target_word} in entry: {word}, gloss: {gloss}")
             elif word.startswith(target_word):
                 spelling_matches.insert(0, (word, lang, gloss))
+                # Log information
+                print(f"Found prefix match: {target_word} in entry: {word}, gloss: {gloss}")
     return spelling_matches
 
 def find_language_words(lang, page=1, page_size=100, chunk_size=1000):
@@ -54,6 +66,8 @@ def find_language_words(lang, page=1, page_size=100, chunk_size=1000):
     if os.path.exists(filepath):
         with open(filepath, "rb") as f:
             words = pickle.load(f)
+            # Log information
+            print(f"Loaded words from cache file: {filepath}")
     else:
         words = []
 
@@ -68,11 +82,15 @@ def find_language_words(lang, page=1, page_size=100, chunk_size=1000):
             gloss = entry['glosses'][0] if entry['glosses'] else ''
             if word not in words:
                 words.append((word, lang, gloss))
+                # Log information
+                print(f"Added word to cache: {word}, gloss: {gloss}")
 
         # Save words to cache file only if words are not empty
         if words:
             with open(filepath, "wb") as f:
                 pickle.dump(words, f)
+                # Log information
+                print(f"Saved words to cache file: {filepath}")
 
     # Calculate starting and ending index for the current page
     start_index = (page - 1) * page_size % chunk_size
@@ -82,6 +100,7 @@ def find_language_words(lang, page=1, page_size=100, chunk_size=1000):
     language_words = words[start_index:end_index]
 
     return language_words
+
 
 def get_dictionary_num_pages(lang, page_size):
     total_words = collection.count_documents({"lang": lang})
