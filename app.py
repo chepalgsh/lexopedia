@@ -106,6 +106,11 @@ def sponsors():
     patrons = []
     return render_template('patrons.html', patrons=patrons)
 
+@app.route('/nevermind')
+def sponsors():
+    patrons = []
+    return render_template('what.html', patrons=patrons)
+
 @app.route("/search", methods=["GET"])
 def search():
     return render_template("search.html")
