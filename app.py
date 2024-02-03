@@ -1,6 +1,6 @@
 import math
 from Levenshtein import distance
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 import jellyfish
 from pymongo import MongoClient
 import os
@@ -29,7 +29,6 @@ def find_meaning_matches(target_gloss):
     meaning_matches.sort(key=lambda x: x[0]["word"].lower())
     
     return meaning_matches
-
 
 def find_spelling_matches(target_word):
     spelling_matches = []
@@ -109,6 +108,18 @@ def sponsors():
 @app.route("/search", methods=["GET"])
 def search():
     return render_template("search.html")
+
+@app.route("/api/search-spelling-matches", methods=["POST"])
+def api_spelling_matches():
+    search_term = request.json.get("searchTerm", "").lower()
+    spelling_matches = find_spelling_matches(search_term)
+    return jsonify(spelling_matches)
+
+@app.route("/api/search-meaning-matches", methods=["POST"])
+def api_meaning_matches():
+    search_term = request.json.get("searchTerm", "").lower()
+    meaning_matches = find_meaning_matches(search_term)
+    return jsonify(meaning_matches)
 
 @app.route("/search-spelling-matches/", methods=["POST"])
 def spelling_matches():
