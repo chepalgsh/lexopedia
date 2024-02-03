@@ -1,7 +1,6 @@
-import json
-from flask_cors import CORS, cross_origin
+import math
 from Levenshtein import distance
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for
 import jellyfish
 from pymongo import MongoClient
 import os
@@ -30,6 +29,7 @@ def find_meaning_matches(target_gloss):
     meaning_matches.sort(key=lambda x: x[0]["word"].lower())
     
     return meaning_matches
+
 
 def find_spelling_matches(target_word):
     spelling_matches = []
@@ -109,65 +109,6 @@ def sponsors():
 @app.route("/search", methods=["GET"])
 def search():
     return render_template("search.html")
-
-# Route to handle spelling matches
-@app.route("/api/search-spelling-matches", methods=["POST"])
-@cross_origin()
-def api_spelling_matches():
-    # Extract the API key from the request headers
-    api_key = request.headers.get("API-Key")
-
-    # Check if the API key matches the expected key
-    if api_key != API_KEY:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    search_term = request.json.get("searchTerm", "").lower()
-    filename = f"{search_term}-spelling-matches"
-    filepath = os.path.join("lexopedia-cache", filename)
-
-    if os.path.exists(filepath):
-        with open(filepath, "rb") as f:
-            spelling_matches_data = pickle.load(f)
-        return jsonify(spelling_matches_data)
-
-    spelling_matches = find_spelling_matches(search_term)
-
-    with open(filepath, "wb") as f:
-        pickle.dump(spelling_matches, f)
-
-    return jsonify(spelling_matches)
-
-# Load API key from config file
-with open('config.json') as config_file:
-    config_data = json.load(config_file)
-    API_KEY = config_data.get('API_KEY')
-
-# Route to handle meaning matches
-@app.route("/api/search-meaning-matches", methods=["POST"])
-@cross_origin()
-def api_meaning_matches():
-    # Extract the API key from the request headers
-    api_key = request.headers.get("API-Key")
-
-    # Check if the API key matches the expected key
-    if api_key != API_KEY:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    search_term = request.json.get("searchTerm", "").lower()
-    filename = f"{search_term}-meaning-matches"
-    filepath = os.path.join("lexopedia-cache", filename)
-
-    if os.path.exists(filepath):
-        with open(filepath, "rb") as f:
-            meaning_matches_data = pickle.load(f)
-        return jsonify(meaning_matches_data)
-
-    meaning_matches = find_meaning_matches(search_term)
-
-    with open(filepath, "wb") as f:
-        pickle.dump(meaning_matches, f)
-
-    return jsonify(meaning_matches)
 
 @app.route("/search-spelling-matches/", methods=["POST"])
 def spelling_matches():
@@ -285,4 +226,3 @@ def dictionary_redirect(lang):
 
 if __name__ == "__main__":
     app.run(debug=False)
-CORS(app)
