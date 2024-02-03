@@ -112,13 +112,37 @@ def search():
 @app.route("/api/search-spelling-matches", methods=["POST"])
 def api_spelling_matches():
     search_term = request.json.get("searchTerm", "").lower()
+    filename = f"{search_term}-spelling-matches"
+    filepath = os.path.join("lexopedia-cache", filename)
+
+    if os.path.exists(filepath):
+        with open(filepath, "rb") as f:
+            spelling_matches_data = pickle.load(f)
+        return jsonify(spelling_matches_data)
+
     spelling_matches = find_spelling_matches(search_term)
+
+    with open(filepath, "wb") as f:
+        pickle.dump(spelling_matches, f)
+
     return jsonify(spelling_matches)
 
 @app.route("/api/search-meaning-matches", methods=["POST"])
 def api_meaning_matches():
     search_term = request.json.get("searchTerm", "").lower()
+    filename = f"{search_term}-meaning-matches"
+    filepath = os.path.join("lexopedia-cache", filename)
+
+    if os.path.exists(filepath):
+        with open(filepath, "rb") as f:
+            meaning_matches_data = pickle.load(f)
+        return jsonify(meaning_matches_data)
+
     meaning_matches = find_meaning_matches(search_term)
+
+    with open(filepath, "wb") as f:
+        pickle.dump(meaning_matches, f)
+
     return jsonify(meaning_matches)
 
 @app.route("/search-spelling-matches/", methods=["POST"])
