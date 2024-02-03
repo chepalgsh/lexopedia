@@ -1,4 +1,5 @@
-import math
+import json
+from flask_cors import CORS, cross_origin
 from Levenshtein import distance
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 import jellyfish
@@ -109,8 +110,17 @@ def sponsors():
 def search():
     return render_template("search.html")
 
+# Route to handle spelling matches
 @app.route("/api/search-spelling-matches", methods=["POST"])
+@cross_origin()
 def api_spelling_matches():
+    # Extract the API key from the request headers
+    api_key = request.headers.get("X-API-Key")
+
+    # Check if the API key matches the expected key
+    if api_key != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
     search_term = request.json.get("searchTerm", "").lower()
     filename = f"{search_term}-spelling-matches"
     filepath = os.path.join("lexopedia-cache", filename)
@@ -127,8 +137,22 @@ def api_spelling_matches():
 
     return jsonify(spelling_matches)
 
+# Load API key from config file
+with open('config.json') as config_file:
+    config_data = json.load(config_file)
+    API_KEY = config_data.get('API_KEY')
+
+# Route to handle meaning matches
 @app.route("/api/search-meaning-matches", methods=["POST"])
+@cross_origin()
 def api_meaning_matches():
+    # Extract the API key from the request headers
+    api_key = request.headers.get("X-API-Key")
+
+    # Check if the API key matches the expected key
+    if api_key != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
     search_term = request.json.get("searchTerm", "").lower()
     filename = f"{search_term}-meaning-matches"
     filepath = os.path.join("lexopedia-cache", filename)
@@ -261,3 +285,4 @@ def dictionary_redirect(lang):
 
 if __name__ == "__main__":
     app.run(debug=False)
+CORS(app)
