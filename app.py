@@ -115,7 +115,7 @@ def search():
 @cross_origin()
 def api_spelling_matches():
     # Extract the API key from the request headers
-    api_key = request.headers.get("X-API-Key")
+    api_key = request.headers.get("API-Key")
 
     # Check if the API key matches the expected key
     if api_key != API_KEY:
@@ -147,7 +147,7 @@ with open('config.json') as config_file:
 @cross_origin()
 def api_meaning_matches():
     # Extract the API key from the request headers
-    api_key = request.headers.get("X-API-Key")
+    api_key = request.headers.get("API-Key")
 
     # Check if the API key matches the expected key
     if api_key != API_KEY:
