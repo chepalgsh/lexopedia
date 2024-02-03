@@ -260,4 +260,4 @@ def dictionary_redirect(lang):
     return redirect(f"/dictionary/{lang}/1")
 
 if __name__ == "__main__":
-     app.run(host='0.0.0.0', debug=True)
+    app.run(debug=False)
