@@ -128,11 +128,11 @@ def search_spelling_matches():
     return redirect(f"/spelling-matches/{request.form['searchTerm'].lower()}")
 
 @app.route("/api/search-spelling-matches/<searchTerm>", methods=["GET"])
-def search_spelling_matches_api():
+def search_spelling_matches_api(searchTerm):
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
 
-    filename = f'{request.form["searchTerm"]}-spelling-matches'
+    filename = f'{searchTerm.lower()}-spelling-matches'
     filepath = os.path.join("lexopedia-cache", filename)
     
     # Check if the file exists and redirect to the existing page if it does
@@ -143,7 +143,7 @@ def search_spelling_matches_api():
         return jsonify(spelling_matches_data)
     
     # Find words that are closest in spelling to the target word
-    spelling_matches = find_spelling_matches(request.form["searchTerm"].lower())
+    spelling_matches = find_spelling_matches(searchTerm.lower())
     
     # Prepare the data to be passed to the HTML template
     spelling_matches_data = [(word, lang, glosses) for word, lang, glosses in spelling_matches]
@@ -193,11 +193,11 @@ def search_meaning_matches():
     return redirect(f"/meaning-matches/{request.form['searchTerm'].lower()}")
 
 @app.route("/api/search-meaning-matches/<searchTerm>", methods=["GET"])
-def search_meaning_matches_api():
+def search_meaning_matches_api(searchTerm):
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
 
-    filename = f'{request.form["searchTerm"]}-meaning-matches'
+    filename = f'{searchTerm.lower()}-meaning-matches'
     filepath = os.path.join("lexopedia-cache", filename)
     
     # Check if the file exists and redirect to the existing page if it does
@@ -208,7 +208,7 @@ def search_meaning_matches_api():
         return jsonify(meaning_matches_data)
     
     # Find words that are closest in meaning to the target word
-    meaning_matches = find_meaning_matches(request.form["searchTerm"].lower())
+    meaning_matches = find_meaning_matches(searchTerm.lower())
     
     # Prepare the data to be passed to the HTML template
     meaning_matches_data = [(word, lang, glosses) for word, lang, glosses in meaning_matches]
