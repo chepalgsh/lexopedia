@@ -1,5 +1,4 @@
 import json
-from flask_cors import CORS, cross_origin
 from Levenshtein import distance
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 import jellyfish
@@ -106,16 +105,11 @@ def sponsors():
     patrons = []
     return render_template('patrons.html', patrons=patrons)
 
-@app.route("/search", methods=["GET"])
-def search():
-    return render_template("search.html")
-
 # Route to handle spelling matches
-@app.route("/api/search-spelling-matches", methods=["POST"])
-@cross_origin()
+@app.route("/api/search-spelling-matches", methods=['GET'])
 def api_spelling_matches():
     # Extract the API key from the request headers
-    api_key = request.headers.get("Lexopedia-API-Key")
+    api_key = request.headers.get("API-Key")
 
     # Check if the API key matches the expected key
     if api_key != API_KEY:
@@ -143,11 +137,10 @@ with open('./config.json') as config_file:
     API_KEY = config_data.get('API_KEY')
 
 # Route to handle meaning matches
-@app.route("/api/search-meaning-matches", methods=["POST"])
-@cross_origin()
+@app.route("/api/search-meaning-matches", methods=['GET'])
 def api_meaning_matches():
     # Extract the API key from the request headers
-    api_key = request.headers.get("Lexopedia-API-Key")
+    api_key = request.headers.get("API-Key")
 
     # Check if the API key matches the expected key
     if api_key != API_KEY:
@@ -285,4 +278,3 @@ def dictionary_redirect(lang):
 
 if __name__ == "__main__":
     app.run(debug=False)
-CORS(app)
