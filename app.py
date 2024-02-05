@@ -138,7 +138,7 @@ def api_spelling_matches():
     return jsonify(spelling_matches)
 
 # Load API key from config file
-with open('config.json') as config_file:
+with open('./config.json') as config_file:
     config_data = json.load(config_file)
     API_KEY = config_data.get('API_KEY')
 
