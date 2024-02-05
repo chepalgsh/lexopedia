@@ -1,3 +1,4 @@
+import json
 import math
 from Levenshtein import distance
 from flask import Flask, jsonify, redirect, render_template, request, url_for
@@ -12,6 +13,11 @@ app = Flask(__name__)
 client = MongoClient()
 db = client["wordbase"]
 collection = db["entries"]
+
+# Load API key from config file
+with open('./config.json') as config_file:
+    config_data = json.load(config_file)
+    API_KEY = config_data.get('API_KEY')
 
 def find_meaning_matches(target_gloss):
     meaning_matches = []
@@ -129,6 +135,13 @@ def search_spelling_matches():
 
 @app.route("/api/search-spelling-matches/<searchTerm>", methods=["GET"])
 def search_spelling_matches_api(searchTerm):
+    # Extract the API key from the request headers
+    api_key = request.headers.get("API-Key")
+
+    # Check if the API key matches the expected key
+    if api_key != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
 
@@ -194,6 +207,13 @@ def search_meaning_matches():
 
 @app.route("/api/search-meaning-matches/<searchTerm>", methods=["GET"])
 def search_meaning_matches_api(searchTerm):
+    # Extract the API key from the request headers
+    api_key = request.headers.get("API-Key")
+
+    # Check if the API key matches the expected key
+    if api_key != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
 
