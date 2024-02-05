@@ -1,4 +1,4 @@
-import json
+import math
 from Levenshtein import distance
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 import jellyfish
@@ -87,7 +87,6 @@ def get_dictionary_num_pages(lang, page_size):
     num_pages = (total_words + page_size - 1) // page_size
     return num_pages
 
-
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
@@ -105,65 +104,8 @@ def sponsors():
     patrons = []
     return render_template('patrons.html', patrons=patrons)
 
-# Route to handle spelling matches
-@app.route("/api/search-spelling-matches", methods=['GET'])
-def api_spelling_matches():
-    # Extract the API key from the request headers
-    api_key = request.headers.get("API-Key")
-
-    # Check if the API key matches the expected key
-    if api_key != API_KEY:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    search_term = request.json.get("searchTerm", "").lower()
-    filename = f"{search_term}-spelling-matches"
-    filepath = os.path.join("lexopedia-cache", filename)
-
-    if os.path.exists(filepath):
-        with open(filepath, "rb") as f:
-            spelling_matches_data = pickle.load(f)
-        return jsonify(spelling_matches_data)
-
-    spelling_matches = find_spelling_matches(search_term)
-
-    with open(filepath, "wb") as f:
-        pickle.dump(spelling_matches, f)
-
-    return jsonify(spelling_matches)
-
-# Load API key from config file
-with open('./config.json') as config_file:
-    config_data = json.load(config_file)
-    API_KEY = config_data.get('API_KEY')
-
-# Route to handle meaning matches
-@app.route("/api/search-meaning-matches", methods=['GET'])
-def api_meaning_matches():
-    # Extract the API key from the request headers
-    api_key = request.headers.get("API-Key")
-
-    # Check if the API key matches the expected key
-    if api_key != API_KEY:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    search_term = request.json.get("searchTerm", "").lower()
-    filename = f"{search_term}-meaning-matches"
-    filepath = os.path.join("lexopedia-cache", filename)
-
-    if os.path.exists(filepath):
-        with open(filepath, "rb") as f:
-            meaning_matches_data = pickle.load(f)
-        return jsonify(meaning_matches_data)
-
-    meaning_matches = find_meaning_matches(search_term)
-
-    with open(filepath, "wb") as f:
-        pickle.dump(meaning_matches, f)
-
-    return jsonify(meaning_matches)
-
 @app.route("/search-spelling-matches/", methods=["POST"])
-def spelling_matches():
+def search_spelling_matches():
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
 
@@ -185,6 +127,31 @@ def spelling_matches():
 
     return redirect(f"/spelling-matches/{request.form['searchTerm'].lower()}")
 
+@app.route("/api/search-spelling-matches/<searchTerm>", methods=["GET"])
+def search_spelling_matches_api():
+    if not os.path.exists("lexopedia-cache"):
+      os.makedirs("lexopedia-cache")
+
+    filename = f'{request.form["searchTerm"]}-spelling-matches'
+    filepath = os.path.join("lexopedia-cache", filename)
+    
+    # Check if the file exists and redirect to the existing page if it does
+    if os.path.exists(filepath):
+        # Load the data from the file
+        with open(filepath, "rb") as f:
+            spelling_matches_data = pickle.load(f)
+        return jsonify(spelling_matches_data)
+    
+    # Find words that are closest in spelling to the target word
+    spelling_matches = find_spelling_matches(request.form["searchTerm"].lower())
+    
+    # Prepare the data to be passed to the HTML template
+    spelling_matches_data = [(word, lang, glosses) for word, lang, glosses in spelling_matches]
+    
+    with open(filepath, "wb") as f:
+        pickle.dump(spelling_matches_data, f)
+
+    return jsonify(spelling_matches_data)
 
 @app.route("/spelling-matches/<searchTerm>")
 def cached_spelling_matches(searchTerm):
@@ -205,7 +172,7 @@ def cached_spelling_matches(searchTerm):
     return "No matches found for this word."
 
 @app.route("/search-meaning-matches/", methods=["POST"])
-def meaning_matches():
+def search_meaning_matches():
     if not os.path.exists("lexopedia-cache"):
       os.makedirs("lexopedia-cache")
     filename = f'{request.form["searchTerm"].lower()}-meaning-matches'
@@ -225,6 +192,31 @@ def meaning_matches():
 
     return redirect(f"/meaning-matches/{request.form['searchTerm'].lower()}")
 
+@app.route("/api/search-meaning-matches/<searchTerm>", methods=["GET"])
+def search_meaning_matches_api():
+    if not os.path.exists("lexopedia-cache"):
+      os.makedirs("lexopedia-cache")
+
+    filename = f'{request.form["searchTerm"]}-meaning-matches'
+    filepath = os.path.join("lexopedia-cache", filename)
+    
+    # Check if the file exists and redirect to the existing page if it does
+    if os.path.exists(filepath):
+        # Load the data from the file
+        with open(filepath, "rb") as f:
+            meaning_matches_data = pickle.load(f)
+        return jsonify(meaning_matches_data)
+    
+    # Find words that are closest in meaning to the target word
+    meaning_matches = find_meaning_matches(request.form["searchTerm"].lower())
+    
+    # Prepare the data to be passed to the HTML template
+    meaning_matches_data = [(word, lang, glosses) for word, lang, glosses in meaning_matches]
+    
+    with open(filepath, "wb") as f:
+        pickle.dump(meaning_matches_data, f)
+
+    return jsonify(meaning_matches_data)
 
 @app.route("/meaning-matches/<searchTerm>")
 def cached_meaning_matches(searchTerm):
