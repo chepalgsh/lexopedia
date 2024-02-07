@@ -231,7 +231,7 @@ def search_meaning_matches_api(searchTerm):
     meaning_matches = find_meaning_matches(searchTerm.lower())
     
     # Prepare the data to be passed to the HTML template
-    meaning_matches_data = [(word, lang, glosses) for word, lang, glosses in meaning_matches]
+    meaning_matches_data = [(entry["word"], entry["lang"], gloss) for entry, gloss in meaning_matches]
     
     with open(filepath, "wb") as f:
         pickle.dump(meaning_matches_data, f)
